@@ -16,7 +16,7 @@ app.use('/', indexRouter);
 app.use('/new', newMessageRouter);
 app.use('/message', viewMessageRouter)
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);

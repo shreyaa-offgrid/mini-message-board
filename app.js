@@ -1,20 +1,17 @@
-const express = require('express');
-const morgan = require('morgan');
+require('dotenv').config();
 
+const express = require('express');
 const app = express();
 
 app.set('view engine', 'ejs');
 
-const {indexRouter} = require("./routes/indexRouter");
-const newMessageRouter = require("./routes/newMessageRouter")
-const viewMessageRouter = require("./routes/viewMessageRouter")
+const morgan = require('morgan');
+const indexRouter = require("./routes/indexRouter");
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
-app.use('/new', newMessageRouter);
-app.use('/message', viewMessageRouter)
 
 const port = process.env.PORT || 3000;
 

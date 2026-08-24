@@ -11,7 +11,7 @@
   <a href="/new">+ new message</a>
   <% messages.forEach(message=>{ %>
     <p><%= message.text %></p>
-    <p><%= message.user %></p>
+    <p><%= message.username %></p>
     <p><%= message.added %></p>
     <a href="/message/<%= message.id %>">View this message</a>
     <% }) %>

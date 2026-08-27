@@ -10,9 +10,13 @@ const validateMessage = [
 ]
 
 async function getMessages(req, res){
-  const messages = await db.getAllMessages();
-  res.render('index', 
-    {title: "Mini Messageboard", messages})
+  try{
+    const messages = await db.getAllMessages();
+    res.render('index', {title: "Mini Messageboard", messages})
+  } catch(err){
+    console.error(err);
+    res.status(500).send('Unable to retrieve messages')
+  }
 }
 
 function newMessageGet(req, res) {
@@ -24,7 +28,6 @@ const newMessagePost = [
   async (req, res)=>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-      console.log(errors.array());
       return res.status(400)
         .render('form', {
           errors: errors.array(),
@@ -37,23 +40,35 @@ const newMessagePost = [
       await db.createMessage(username, text);
       res.redirect('/');
     } catch(err){
-      console.log(err);
-      res.status(500).send('Aw snap. Something went wrong on the server')
+      console.error(err);
+      res.status(500).send('Aw snap. Something went wrong.')
     }
-    res.redirect('/');
   }
 ]
 
 async function messageByIdGet(req, res) {
   const id = req.params.id;
-  const message = await db.getMessage(id);
-  if(message===null) return res.send(`No message with id ${id} exists`)
-  res.render('message', {message})
+  try {
+    const message = await db.getMessage(id);
+    if(message===null){
+      return res.status(404)
+      .send(`No message with id ${id} exists`)
+    }
+    res.render('message', {message})
+  } catch(err){
+    console.error(err);
+    res.status(500).send('Unable to retrieve message.');
+  }
 }
 
 async function deleteAllMessagesPost(req, res) {
-  await db.deleteAllMessages();
-  res.redirect('/');
+  try {
+    await db.deleteAllMessages();
+    res.redirect('/');
+  } catch(err){
+    console.error(err);
+    res.status(500).send('Unable to delete messages.');
+  }
 }
 
 module.exports = {

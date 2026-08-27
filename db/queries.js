@@ -9,10 +9,15 @@ async function getAllMessages(){
 
 
 async function getMessage(id){
+  const msgId = Number(id);
+  if(Number.isNaN(msgId)){
+    return null;
+  }
   const {rows} = await pool.query(`
     SELECT * FROM messages
     WHERE id = $1
-    `, [id]);
+    `, [msgId]);
+  if(rows.length===0) return null;
   return rows[0];
 }
 async function createMessage(username, text){

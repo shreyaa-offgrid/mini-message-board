@@ -6,5 +6,5 @@ indexRouter.get('/', messagesController.getMessages);
 indexRouter.get('/new', messagesController.newMessageGet)
 indexRouter.post('/new', messagesController.newMessagePost)
 indexRouter.get('/message/:id', messagesController.messageByIdGet)
-
+indexRouter.post('/delete', messagesController.deleteAllMessagesPost);
 module.exports = indexRouter;

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,20 +9,26 @@
 
 <body>
   <h1>New Message Form</h1>
+  <%- include('partials/errors') %>
   <form method="post" action="/new">
     <p>
       <label for="username">Author's Name: </label>
-      <input type="text" id="username" name="username">
+      <input 
+        type="text" 
+        id="username" name="username" 
+        value = "<%= locals.message?.username || '' %>"
+        required>
     </p>
     <p>
       <label for="message">Message: </label>
-      <textarea id="message" name="text"></textarea>
+      <textarea id="message" name="text" required><%= locals.message?.text || '' %></textarea>
     </p>
     <p>
       <button type="submit">Done</button>
     </p>
     
   </form>
+  <a href="../">Go to all messages</a>
 </body>
 
 </html>

@@ -1,0 +1,80 @@
+.form-container {
+  width: min(600px, 90%);
+  margin: 55px auto;
+}
+
+.form-container h1 {
+  margin-bottom: 35px;
+}
+
+.message-form {
+  padding: 30px;
+  background: white;
+  border: 1px solid #d2e1d5;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(30, 70, 45, 0.07);
+}
+
+.form-field {
+  margin-bottom: 22px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #315b43;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #c5d8ca;
+  border-radius: 5px;
+  background: #fbfdfb;
+  color: #193b2a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #26734d;
+  box-shadow: 0 0 0 3px rgba(38, 115, 77, 0.1);
+}
+
+.form-field textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.post-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #26734d;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.post-button:hover {
+  background: #1d5c3d;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

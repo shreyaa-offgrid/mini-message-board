@@ -12,7 +12,7 @@ const validateMessage = [
 async function getMessages(req, res){
   try{
     const messages = await db.getAllMessages();
-    res.render('index', {title: "Mini Messageboard", messages})
+    res.render('index', {title: "Mini Message Board", messages})
   } catch(err){
     console.error(err);
     res.status(500).send('Unable to retrieve messages')
@@ -71,10 +71,25 @@ async function deleteAllMessagesPost(req, res) {
   }
 }
 
+async function deleteMessagePost(req, res) {
+  const id = req.params.id;
+
+  try {
+    const deleted = await db.deleteMessage(id);
+
+    if (!deleted) {
+      return res.status(404)
+        .send(`No message with id ${id} exists`);
+    }
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Unable to delete message.');
+  }
+}
+
 module.exports = {
-  getMessages, 
-  newMessageGet, 
-  newMessagePost, 
-  messageByIdGet, 
-  deleteAllMessagesPost
+  getMessages, newMessageGet, 
+  newMessagePost, messageByIdGet, 
+  deleteAllMessagesPost, deleteMessagePost
 }

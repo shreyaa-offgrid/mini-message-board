@@ -10,7 +10,7 @@ const indexRouter = require("./routes/indexRouter");
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static('public'));
 app.use('/', indexRouter);
 
 const port = process.env.PORT || 3000;
